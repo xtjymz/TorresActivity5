@@ -1,0 +1,40 @@
+﻿@model List<TorresActivity5.Models.Entities.Student>
+
+<h1>All Students</h1>
+
+<div class="d-flex justify-content-between mb-3">
+    <a class="btn btn-success" asp-controller="Students" asp-action="Add">Add New Student</a>
+
+    <form method="get" asp-controller="Students" asp-action="List" class="d-flex">
+        <input type="text" name="searchTerm" class="form-control me-2" placeholder="Search by first name..." />
+        <button type="submit" class="btn btn-secondary">Search</button>
+    </form>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Full Name</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Emergency Contact</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.FullName</td>
+                <td>@student.Age</td>
+                <td>@student.Email</td>
+                <td>@student.Phone</td>
+                <td>@student.EmergencyContactName</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" asp-controller="Students" asp-action="Edit" asp-route-id="@student.Id">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
